@@ -11,4 +11,14 @@ describe StringCalc do
     expect(actual).to eq actual
 
   end
+  it "returns 0 when empty string passed" do
+
+    calc = StringCalc.new
+
+    expected = 0
+    actual = calc.add('')
+
+    expect(actual).to eq actual
+
+  end
 end
