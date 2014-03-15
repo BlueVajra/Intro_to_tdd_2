@@ -4,6 +4,7 @@ describe Logger do
   it "does not print out anything if 3 logs have been added" do
     filename = "Logger.txt"
     logger = Logger.new(filename)
+    File.new(filename, "w+").write("") #resets the logger.txt file
 
     logger.log("This is our first string")
     logger.log("This is our second string")
@@ -15,6 +16,7 @@ describe Logger do
   it "prints out the message to the file after 5 logs have been added" do
     filename = "Logger.txt"
     logger = Logger.new(filename)
+    File.new(filename, "w+").write("") #resets the logger.txt file
 
     logger.log("This is our first string")
     logger.log("This is our second string")
@@ -30,6 +32,7 @@ describe Logger do
   it "prints out five lines with timestamp" do
     filename = "Logger.txt"
     logger = Logger.new(filename)
+    File.new(filename, "w+").write("") #resets the logger.txt file
 
     logger.log("first string is here")
     logger.log("second string")
@@ -46,6 +49,7 @@ describe Logger do
   it "only prints 10 lines if 13 have been logged" do
     filename = "Logger.txt"
     logger = Logger.new(filename)
+    File.new(filename, "w+").write("") #resets the logger.txt file
     count = 1
     13.times do
       logger.log("This is string ##{count}")
