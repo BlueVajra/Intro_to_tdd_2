@@ -1,36 +1,16 @@
 require 'logger'
 
 describe Logger do
-  it "initializes with a filename" do
-    filename = "Logger.txt"
-    logger = Logger.new(filename)
-  end
-  it "receives a string with the log method" do
-    filename = "Logger.txt"
-    logger = Logger.new(filename)
-
-    logger.log("This is our first string")
-
-  end
-  it "prints out the message to the file after 5 logs have been added" do
+  it "does not print out anything if 3 logs have been added" do
     filename = "Logger.txt"
     logger = Logger.new(filename)
 
     logger.log("This is our first string")
     logger.log("This is our second string")
     logger.log("This is our third string")
-    logger.log("This is our fourth string")
-    logger.log("This is our fifth string")
-
-    expected = "This is our first string
-This is our second string
-This is our third string
-This is our fourth string
-This is our fifth string"
-
     actual = File.read(File.expand_path("../../Logger.txt", __FILE__))
-    expect(actual).to eq expected
 
+    expect(actual).not_to match("second string")
   end
   it "prints out the message to the file after 5 logs have been added" do
     filename = "Logger.txt"
@@ -44,11 +24,10 @@ This is our fifth string"
 
     actual = File.read(File.expand_path("../../Logger.txt", __FILE__))
 
-    expect(actual).to match(/fourth string/)
     expect(actual).to match("second string")
 
   end
-  it "prints out the message to the file after 5 logs have been added" do
+  it "prints out five lines with timestamp" do
     filename = "Logger.txt"
     logger = Logger.new(filename)
 
@@ -60,8 +39,8 @@ This is our fifth string"
 
     actual = File.read(File.expand_path("../../Logger.txt", __FILE__))
 
-    expect(actual).to match(/fourth string/)
-    expect(actual).to match("second string")
+    expect(actual).to match(/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/)
+    expect(actual).to match("fourth string is also here")
 
   end
 

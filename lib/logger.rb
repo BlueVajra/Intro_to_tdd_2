@@ -8,7 +8,7 @@ class Logger
   def log(message)
     @count += 1
     @message = message
-    @log_storage << @message
+    @log_storage << Time.now.to_s + " " + @message
     if @count == 5
       @file.write(@log_storage.join("\n"))
       @file.close
