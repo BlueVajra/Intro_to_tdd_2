@@ -3,13 +3,15 @@ class Logger
     @filename = filename
     @log_storage = []
     @count = 0
+    @file = File.new(@filename, "w+")
   end
   def log(message)
     @count += 1
     @message = message
     @log_storage << @message
     if @count == 5
-      @log_storage.join("\n")
+      @file.write(@log_storage.join("\n"))
+      @file.close
     end
   end
 end
