@@ -12,6 +12,7 @@ class Logger
     if @count == 5
       @file.write(@log_storage.join("\n"))
       @file.close
+      @count =0
     end
   end
 end
